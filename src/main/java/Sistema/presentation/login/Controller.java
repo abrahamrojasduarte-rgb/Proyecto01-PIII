@@ -48,7 +48,7 @@ public class Controller {
         ventanaPrincipal.setLocationRelativeTo(null);
         ventanaPrincipal.setVisible(true);
 
-        JFrame ventanaActual = (JFrame) SwingUtilities.getWindowAncestor(view.getPanelLog());
+        JFrame ventanaActual = (JFrame ) SwingUtilities.getWindowAncestor(view.getPanelLog());
         if (ventanaActual != null) {
             ventanaActual.dispose();
         }

@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Highlighter extends MouseAdapter implements MouseListener {
+public class  Highlighter extends MouseAdapter implements MouseListener {
     private Color color;
     private Color original;
 

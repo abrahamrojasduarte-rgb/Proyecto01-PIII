@@ -1,4 +1,4 @@
 package Sistema.presentation.login;
 
-public class Model {
+public class Model  {
 }

@@ -18,7 +18,7 @@ public class Application {
         loginWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
+                super.windowClosing(e) ;
             }
         });
         loginWindow.setTitle("Login - Sistema");

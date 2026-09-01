@@ -31,7 +31,5 @@ public abstract class Usuario {
         return puesto;
     }
 
-    public int getNumTelefono() {
-        return numTelefono;
-    }
+    public int getNumTelefono() {return numTelefono;}
 }
