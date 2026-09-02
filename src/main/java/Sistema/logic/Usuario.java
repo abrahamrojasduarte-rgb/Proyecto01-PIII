@@ -1,34 +1,39 @@
 package Sistema.logic;
 
-public abstract class Usuario {
-    protected String id;
-    protected String password;
-    protected String puesto;
+public class Usuario {
+    private String id;
+    private String clave;
+    private Rol rol;
 
     public Usuario(){
-        id = " ";
-        password = "";
-        puesto = " ";
-    }
-    public Usuario(String i, String pass, String p){
-        id = i;
-        password = pass;
-        puesto = p;
+
     }
 
-    public String getId() {
-        return id;
+    public Usuario(String id, String clave, Rol rol){
+        this.id = id;
+        this.clave = clave;
+        this.rol = rol;
     }
 
-    public String getPassword() {
-        return password;
+    public String getId(){
+        return this.id;
     }
 
-    public String getPuesto() {
-        return puesto;
+    public String getClave(){
+        return this.clave;
     }
 
-    public boolean validarClave(String claveIngresada) {
-        return password != null && password.equals(claveIngresada);
+    public Rol getRol(){
+        return this.rol;
     }
+
+    public void setClave(String clave){
+        this.clave = clave;
+    }
+
+    public void setRol(Rol rol){
+        this.rol = rol;
+    }
+
+
 }
