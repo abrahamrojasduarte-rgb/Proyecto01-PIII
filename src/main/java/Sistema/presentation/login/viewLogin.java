@@ -2,7 +2,6 @@ package Sistema.presentation.login;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -12,6 +11,7 @@ public class viewLogin implements PropertyChangeListener{
     private JButton iniciarSesionButton;
     private JPanel panelLog;
 
+    Model model;
     public JPanel getPanelLog(){
         return panelLog;
     }
