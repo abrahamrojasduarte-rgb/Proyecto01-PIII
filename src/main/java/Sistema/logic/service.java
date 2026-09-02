@@ -1,4 +1,4 @@
 package Sistema.logic;
 
-public class service {
+public class service  {
 }
