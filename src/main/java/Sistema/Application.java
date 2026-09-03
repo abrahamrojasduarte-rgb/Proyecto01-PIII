@@ -13,7 +13,7 @@ public class Application {
         Controller controller = new Controller(model, View); // Se instancia el controlador
 
         JFrame loginWindow = new JFrame();
-        loginWindow.setSize(300, 220);
+        loginWindow.setSize(350, 220);
         loginWindow.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         loginWindow.addWindowListener(new WindowAdapter() {
             @Override

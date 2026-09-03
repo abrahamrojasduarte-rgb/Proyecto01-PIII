@@ -1,5 +1,7 @@
 package Sistema.presentation.login;
 
+import Sistema.presentation.Highlighter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -10,6 +12,8 @@ public class viewLogin implements PropertyChangeListener{
     private JTextField txtpass;
     private JButton iniciarSesionButton;
     private JPanel panelLog;
+    private JButton cancelarButton;
+    private JButton cambiarContrasenaButton;
 
     Model model;
     public JPanel getPanelLog(){

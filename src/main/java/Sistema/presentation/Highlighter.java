@@ -1,4 +1,4 @@
-package Sistema.presentation.login;
+package Sistema.presentation;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
