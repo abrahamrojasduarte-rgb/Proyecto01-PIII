@@ -1,5 +1,6 @@
 package Sistema.presentation.login;
 
+import Sistema.logic.Funcionario;
 import Sistema.presentation.login.Model;
 import Sistema.presentation.login.viewLogin;
 
@@ -15,13 +16,23 @@ public class Controller {
     public Controller(Model model, viewLogin view) {
         this.model = model;
         this.view = view;
-
+        
         this.view.getIniciarSesionButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 validarLogin();
             }
         });
+
+        this.view.getCancelarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
+    }
+    public void clear() {
+        model.setCurrent(new Funcionario());
     }
 
     private void validarLogin() {
@@ -53,4 +64,6 @@ public class Controller {
             ventanaActual.dispose();
         }
     }
+
+
 }

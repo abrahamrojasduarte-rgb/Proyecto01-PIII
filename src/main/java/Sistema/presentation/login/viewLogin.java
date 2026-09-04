@@ -1,9 +1,9 @@
 package Sistema.presentation.login;
 
-import Sistema.presentation.Highlighter;
+import Sistema.logic.Funcionario;
+import Sistema.presentation.funcionarios.Controller;
 
 import javax.swing.*;
-import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -16,26 +16,50 @@ public class viewLogin implements PropertyChangeListener{
     private JButton cambiarContrasenaButton;
 
     Model model;
-    public JPanel getPanelLog(){
-        return panelLog;
-    }
-    public String getUser() {
-        return userTXT.getText().trim();
+    Controller controller;
+
+    public viewLogin() {
+
     }
 
-    public String getTxtpass(){
-        return txtpass.getText();
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
-    Highlighter highlighter = new Highlighter(Color.green);
+    public void setModel(Model model) {
+        this.model = model;
+        this.model.addPropertyChangeListener(this);
+    }
+
+    public JButton getCancelarButton() {
+        return cancelarButton;
+    }
 
     public JButton getIniciarSesionButton() {
         return iniciarSesionButton;
     }
 
+    public JPanel getPanelLog() {
+        return panelLog;
+    }
+
+    public String getUser() {
+        return userTXT.getText().trim();
+    }
+
+    public String getTxtpass() {
+        return txtpass.getText();
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (Model.CURRENT.equals(evt.getPropertyName())) {
+            Funcionario current = model.getCurrent();
+
+            userTXT.setText(current.getNombre() != null ? current.getNombre() : "");
+            txtpass.setText("");
+        }
 
     }
-//     userTXT.addMouseListener(Highlighter);
+
 }
