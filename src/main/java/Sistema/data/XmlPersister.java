@@ -7,14 +7,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 public class XmlPersister {
     private String path;
-
     private static XmlPersister theInstance;
 
     public static XmlPersister instance() {
         if (theInstance == null) theInstance = new XmlPersister("data.xml");
         return theInstance;
     }
-
 
     public XmlPersister(String p) {
         path = p;

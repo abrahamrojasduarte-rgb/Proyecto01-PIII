@@ -10,24 +10,24 @@ import java.util.List;
 @XmlRootElement(name = "data")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class data {
-    @XmlElementWrapper(name = "Usuario")
+    @XmlElementWrapper(name = "Funcionarios")
     @XmlElement(name = "Funcionario")
-    private List<Funcionario> funcionarios ;
+    private List<Funcionario> funcionarios; // ya no es static
 
-    @XmlElementWrapper(name = "Usuario")
+    @XmlElementWrapper(name = "Administradores")
     @XmlElement(name = "Admin")
-    private List<Administrador> administradors ;
+    private List<Administrador> administradors;
 
-    public data(){
+    public data() {
         funcionarios = new ArrayList<>();
         administradors = new ArrayList<>();
     }
 
-    public List<Funcionario> getPersonas() {
+    public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    public List<Administrador> getDepartamentos() {
+    public List<Administrador> getAdministradors() {
         return administradors;
     }
 }

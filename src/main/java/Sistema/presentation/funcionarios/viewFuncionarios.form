@@ -24,7 +24,7 @@
               <text value="Id"/>
             </properties>
           </component>
-          <component id="fa0e9" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="fa0e9" class="javax.swing.JTextField" binding="idBuscar">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -32,7 +32,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="a792a" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="a792a" class="javax.swing.JTextField" binding="nombreBuscar">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -74,15 +74,17 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="5259a" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="5259a" class="javax.swing.JTextField" binding="nombreRegistro">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
-          <component id="5c1e7" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+          <component id="5c1e7" class="javax.swing.JTextField" binding="telefonoRegistro">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -90,7 +92,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="44bb2" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="44bb2" class="javax.swing.JTextField" binding="IDregistro">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

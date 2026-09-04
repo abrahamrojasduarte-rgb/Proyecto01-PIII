@@ -18,6 +18,7 @@ public class Usuario {
     public String getId(){
         return this.id;
     }
+    public void setID(String I){this.id = I; }
 
     public String getClave(){
         return this.clave;
@@ -34,6 +35,5 @@ public class Usuario {
     public void setRol(Rol rol){
         this.rol = rol;
     }
-
 
 }
