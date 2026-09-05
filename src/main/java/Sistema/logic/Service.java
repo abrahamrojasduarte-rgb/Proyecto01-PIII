@@ -16,6 +16,8 @@ public class Service {
         } catch (Exception e) {
             d = new data();
         }
+        crearAdminPorDefectoSiNoExiste();
+
     }
 
     public static Service instance() {
@@ -31,6 +33,10 @@ public class Service {
         }
     }
 
+    private void guardar() throws Exception {
+        XmlPersister.instance().store(d);
+    }
+
     public void create(Funcionario e) throws Exception {
         Funcionario result = d.getFuncionarios().stream()
                 .filter(i -> i.getId().equals(e.getId()))
@@ -38,6 +44,7 @@ public class Service {
                 .orElse(null);
         if (result == null) {
             d.getFuncionarios().add(e);
+            guardar();
         } else {
             throw new Exception("Funcionario ya existe");
         }
@@ -64,5 +71,34 @@ public class Service {
 
     public List<Funcionario> findAll() {
         return d.getFuncionarios();
+    }
+
+    public Usuario encontrarUsuario(String id){
+        Usuario result = d.getFuncionarios().stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+
+        if (result == null) {
+            result = d.getAdministradors().stream()
+                    .filter(u -> u.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        }
+        return result;
+    }
+    private void crearAdminPorDefectoSiNoExiste() {
+        boolean hayAdmin = d.getAdministradors().stream()
+                .anyMatch(u -> u.getRol() == Rol.ADMINISTRADOR);
+
+        if (!hayAdmin) {
+            Administrador admin = new Administrador("admin", "admin123");
+            d.getAdministradors().add(admin);
+            try {
+                XmlPersister.instance().store(d);
+            } catch (Exception e) {
+                System.out.println("No se pudo guardar el admin por defecto: " + e);
+            }
+        }
     }
 }

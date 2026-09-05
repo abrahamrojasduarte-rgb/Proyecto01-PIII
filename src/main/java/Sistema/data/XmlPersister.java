@@ -31,6 +31,7 @@ public class XmlPersister {
         JAXBContext jaxbContext = JAXBContext.newInstance(data.class);
         FileOutputStream os = new FileOutputStream(path);
         Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(d, os);
         os.flush();
         os.close();

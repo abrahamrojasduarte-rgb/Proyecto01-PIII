@@ -29,23 +29,6 @@ public class Application {
         loginWindow.setLocationRelativeTo(null);
         loginWindow.setVisible(true);
 
-//        viewFuncionarios ViewF = new viewFuncionarios();
-//        Model modelF = new Model();
-//        Sistema.presentation.funcionarios.Controller controllerF = new Sistema.presentation.funcionarios.Controller(modelF, ViewF);
-//
-//        JFrame FuncAdmin = new JFrame();
-//        FuncAdmin.setSize(700, 300);
-//        FuncAdmin.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-//        FuncAdmin.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(WindowEvent e) {
-//                super.windowClosing(e) ;
-//            }
-//        });
-//        FuncAdmin.setTitle("Funcionario - Administrador");
-//        FuncAdmin.setContentPane(ViewF.getFuncionarioAdmin());
-//        FuncAdmin.setLocationRelativeTo(null);
-//        FuncAdmin.setVisible(true);
     }
 
     public static final Color BACKGROUND_ERROR = new Color(255, 102, 102);

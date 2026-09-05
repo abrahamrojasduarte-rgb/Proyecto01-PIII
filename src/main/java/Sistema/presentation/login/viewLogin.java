@@ -4,11 +4,13 @@ import Sistema.logic.Funcionario;
 import Sistema.presentation.funcionarios.Controller;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class viewLogin implements PropertyChangeListener{
-    private JTextField userTXT;
+    private JTextField idTXT;
     private JTextField txtpass;
     private JButton iniciarSesionButton;
     private JPanel panelLog;
@@ -20,6 +22,12 @@ public class viewLogin implements PropertyChangeListener{
 
     public viewLogin() {
 
+        cancelarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.clear();
+            }
+        });
     }
 
     public void setController(Controller controller) {
@@ -43,8 +51,8 @@ public class viewLogin implements PropertyChangeListener{
         return panelLog;
     }
 
-    public String getUser() {
-        return userTXT.getText().trim();
+    public String getID() {
+        return idTXT.getText().trim();
     }
 
     public String getTxtpass() {
@@ -56,7 +64,7 @@ public class viewLogin implements PropertyChangeListener{
         if (Model.CURRENT.equals(evt.getPropertyName())) {
             Funcionario current = model.getCurrent();
 
-            userTXT.setText(current.getNombre() != null ? current.getNombre() : "");
+            idTXT.setText(current.getNombre() != null ? current.getNombre() : "");
             txtpass.setText("");
         }
 

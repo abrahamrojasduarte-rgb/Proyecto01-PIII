@@ -189,7 +189,7 @@ public class viewFuncionarios implements PropertyChangeListener{
 
     public Funcionario take() {
         Funcionario e = new Funcionario();
-        e.setID(IDregistro.getText());
+        e.setId(IDregistro.getText());
         e.setNombre(nombreRegistro.getText());
         e.setTelefono(telefonoRegistro.getText());
         return e;

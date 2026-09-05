@@ -23,6 +23,8 @@ public class  Controller {
                 clear();
             }
         });
+        model.setList(Service.instance().findAll());
+
     }
 
 

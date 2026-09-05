@@ -12,7 +12,7 @@ import java.util.List;
 public class data {
     @XmlElementWrapper(name = "Funcionarios")
     @XmlElement(name = "Funcionario")
-    private List<Funcionario> funcionarios; // ya no es static
+    private List<Funcionario> funcionarios;
 
     @XmlElementWrapper(name = "Administradores")
     @XmlElement(name = "Admin")

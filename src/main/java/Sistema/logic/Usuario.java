@@ -9,16 +9,16 @@ public class Usuario {
 
     }
 
-    public Usuario(String id, String clave, Rol rol){
+    public Usuario(String id, Rol rol){
         this.id = id;
-        this.clave = clave;
+        this.clave = "456";
         this.rol = rol;
     }
 
     public String getId(){
         return this.id;
     }
-    public void setID(String I){this.id = I; }
+    public void setId(String id){ this.id = id; }
 
     public String getClave(){
         return this.clave;
@@ -35,5 +35,6 @@ public class Usuario {
     public void setRol(Rol rol){
         this.rol = rol;
     }
+
 
 }
