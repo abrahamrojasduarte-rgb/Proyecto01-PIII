@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class  Controller {
     private Model model;
     private viewFuncionarios view;
+    private Service serv;
 
     public Controller(Model model, viewFuncionarios view) {
         this.model = model;
@@ -45,6 +46,6 @@ public class  Controller {
     }
 
     public void search(String id, String nombre) {
-        model.setList(Service.instance().search(id, nombre));
+        serv.search(id, nombre);
     }
 }

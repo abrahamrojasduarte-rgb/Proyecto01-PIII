@@ -25,7 +25,7 @@ public class viewFuncionarios implements PropertyChangeListener{
     private JButton limpiarButton;
     private JTable funcionarioTable;
 
-    Controller controller;
+    Sistema.presentation.funcionarios.Controller controller;
     Model model;
 
     public viewFuncionarios() {
@@ -78,6 +78,12 @@ public class viewFuncionarios implements PropertyChangeListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.clear();
+            }
+        });
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.search(idBuscar.getText(), nombreBuscar.getText());
             }
         });
     }

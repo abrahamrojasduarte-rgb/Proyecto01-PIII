@@ -1,6 +1,7 @@
 package Sistema.presentation.login;
 
 import Sistema.logic.Funcionario;
+import Sistema.logic.Usuario;
 import Sistema.presentation.funcionarios.Controller;
 
 import javax.swing.*;
@@ -17,8 +18,14 @@ public class viewLogin implements PropertyChangeListener{
     private JButton cancelarButton;
     private JButton cambiarContrasenaButton;
 
+    private static Usuario usuario;
     Model model;
     Controller controller;
+
+    public static Usuario getUsuario(){ return usuario;}
+    public static void setUsuario(Usuario usuario){viewLogin.usuario = usuario;}
+    public static void logout(){viewLogin.usuario = null;}
+    public static boolean isLoggedIn(){return usuario!=null;}
 
     public viewLogin() {
 

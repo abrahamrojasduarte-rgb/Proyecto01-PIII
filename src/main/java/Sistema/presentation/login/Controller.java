@@ -4,9 +4,6 @@ import Sistema.logic.Funcionario;
 import Sistema.logic.Rol;
 import Sistema.logic.Service;
 import Sistema.logic.Usuario;
-import Sistema.presentation.login.Model;
-import Sistema.presentation.login.viewLogin;
-
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -52,9 +49,11 @@ public class Controller {
             if (usuario.getRol() == Rol.ADMINISTRADOR) {
                 JOptionPane.showMessageDialog(view.getPanelLog(), "¡Bienvenido, Administrador!", "Acceso concedido", JOptionPane.INFORMATION_MESSAGE);
                 abrirVentanaPrincipal("Panel de Administrador",true);
+                viewLogin.setUsuario(usuario);
             } else if (usuario.getRol() == Rol.FUNCIONARIO) {
                 JOptionPane.showMessageDialog(view.getPanelLog(), "¡Bienvenido, Empleado!", "Acceso concedido", JOptionPane.INFORMATION_MESSAGE);
                 abrirVentanaPrincipal("Panel de Empleado",false);
+                viewLogin.setUsuario(usuario);
             }
 
         }
@@ -74,8 +73,12 @@ public class Controller {
             Sistema.presentation.funcionarios.Model funcModel = new Sistema.presentation.funcionarios.Model();
             Sistema.presentation.funcionarios.viewFuncionarios funcView = new Sistema.presentation.funcionarios.viewFuncionarios();
             new Sistema.presentation.funcionarios.Controller(funcModel, funcView);
+            Sistema.presentation.categorias.Model catModel= new Sistema.presentation.categorias.Model();
+            Sistema.presentation.categorias.viewCategorias catView = new Sistema.presentation.categorias.viewCategorias();
+            new Sistema.presentation.categorias.Controller(funcModel, catView);
 
             tabbedPane.addTab("Funcionarios", funcView.getFuncionarioAdmin());
+            tabbedPane.addTab("Categorias", catView.getPanelCategorias());
         }
 
 

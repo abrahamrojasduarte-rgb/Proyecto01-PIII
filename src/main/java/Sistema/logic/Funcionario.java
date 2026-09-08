@@ -12,6 +12,7 @@ public class Funcionario extends Usuario{
         super(id, Rol.FUNCIONARIO);
         this.nombre = nombre;
         this.telefono = telefono;
+        this.setClave("784");
     }
 
     public String getNombre() {

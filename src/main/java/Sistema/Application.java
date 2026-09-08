@@ -11,6 +11,14 @@ import java.awt.event.WindowEvent;
 
 public class Application {
     public static void main(String[] args) {
+        try{
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        doLogin();
+    }
+    private static void doLogin(){
         viewLogin View = new viewLogin();
         Sistema.presentation.login.Model model = new Sistema.presentation.login.Model();
         Sistema.presentation.login.Controller controller = new Sistema.presentation.login.Controller(model, View);
@@ -28,8 +36,10 @@ public class Application {
         loginWindow.setContentPane(View.getPanelLog());
         loginWindow.setLocationRelativeTo(null);
         loginWindow.setVisible(true);
-
     }
 
+    private static void doRun(){
+
+    }
     public static final Color BACKGROUND_ERROR = new Color(255, 102, 102);
 }

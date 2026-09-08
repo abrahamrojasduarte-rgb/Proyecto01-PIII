@@ -22,7 +22,7 @@ public class TableModel extends AbstractTableModel<Funcionario> implements javax
         colNames[ID] = "Id";
         colNames[NOMBRE] = "Nombre";
         colNames[NUMTELEFONO] = "Numero de Telefono";
-        colNames[ROL] = "Estado";
+        colNames[ROL] = "Rol";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Sistema.presentation.login;
 import Sistema.logic.Funcionario;
+import Sistema.logic.Usuario;
 import Sistema.presentation.AbstractModel;
 
 import java.beans.PropertyChangeListener;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Model extends AbstractModel {
     Funcionario current;
     List<Funcionario> funcionarios;
+    Usuario usuario;
 
     public static final String CURRENT = "current";
     public static final String LIST = "list";
