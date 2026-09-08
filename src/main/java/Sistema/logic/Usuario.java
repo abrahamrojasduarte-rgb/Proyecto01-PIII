@@ -11,7 +11,7 @@ public class Usuario {
 
     public Usuario(String id, Rol rol){
         this.id = id;
-        this.clave = "784";
+        this.clave = id;
         this.rol = rol;
     }
 

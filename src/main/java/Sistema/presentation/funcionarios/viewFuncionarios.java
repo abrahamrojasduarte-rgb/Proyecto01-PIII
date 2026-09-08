@@ -199,7 +199,7 @@ public class viewFuncionarios implements PropertyChangeListener{
         e.setId(IDregistro.getText());
         e.setNombre(nombreRegistro.getText());
         e.setTelefono(telefonoRegistro.getText());
-        e.setClave("456");
+        e.setClave(IDregistro.getText());
         e.setRol(Rol.FUNCIONARIO);
         return e;
     }

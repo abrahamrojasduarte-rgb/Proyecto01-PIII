@@ -8,6 +8,13 @@
             <nombre>Joao</nombre>
             <telefono>12345</telefono>
         </Funcionario>
+        <Funcionario>
+            <clave>222</clave>
+            <id>222</id>
+            <rol>FUNCIONARIO</rol>
+            <nombre>Juan</nombre>
+            <telefono>67890</telefono>
+        </Funcionario>
     </Funcionarios>
     <Administradores>
         <Admin>

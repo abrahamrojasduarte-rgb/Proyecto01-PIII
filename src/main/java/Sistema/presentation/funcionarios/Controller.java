@@ -3,13 +3,14 @@ package Sistema.presentation.funcionarios;
 import Sistema.logic.Funcionario;
 import Sistema.logic.Service;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class  Controller {
     private Model model;
     private viewFuncionarios view;
-    private Service serv;
 
     public Controller(Model model, viewFuncionarios view) {
         this.model = model;
@@ -46,6 +47,14 @@ public class  Controller {
     }
 
     public void search(String id, String nombre) {
-        serv.search(id, nombre);
+        List<Funcionario> resultados = Service.instance().search(id, nombre);
+
+        if (resultados.isEmpty()) {
+            JOptionPane.showMessageDialog(view.getFuncionarioAdmin(), "No se encontraron resultados", "", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Funcionario encontrado = resultados.get(0);
+        model.setCurrent(encontrado);
     }
 }

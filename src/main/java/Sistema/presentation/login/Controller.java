@@ -74,7 +74,6 @@ public class Controller {
         return instance.encontrarUsuario(id) != null;
     }
 
-    // Este es el método que ABRE el diálogo de cambio de clave
     public void cambiarClave() {
         String id = view.getID();
 
