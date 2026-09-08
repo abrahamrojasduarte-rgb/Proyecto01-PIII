@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+    <Funcionarios>
+        <Funcionario>
+            <clave>789</clave>
+            <id>111</id>
+            <rol>FUNCIONARIO</rol>
+            <nombre>Joao</nombre>
+            <telefono>12345</telefono>
+        </Funcionario>
+    </Funcionarios>
+    <Administradores>
+        <Admin>
+            <clave>admin123</clave>
+            <id>admin</id>
+            <rol>ADMINISTRADOR</rol>
+        </Admin>
+    </Administradores>
+</data>

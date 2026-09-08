@@ -32,7 +32,7 @@ public class viewLogin implements PropertyChangeListener{
         cambiarContrasenaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: conectar con el flujo de cambiarContra
+                controller.cambiarClave();
             }
         });
     }

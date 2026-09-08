@@ -13,11 +13,19 @@ public class Controller {
     private String idUsuario;
     private JDialog dialog;
 
-    public Controller(Sistema.presentation.cambiarContra.Model model, Sistema.presentation.cambiarContra.viewCambiarContra view ){
+    public Controller(Sistema.presentation.cambiarContra.Model model,
+                      Sistema.presentation.cambiarContra.viewCambiarContra view,
+                      String idUsuario, JDialog dialog) {
         this.model = model;
         this.view = view;
+        this.idUsuario = idUsuario;
+        this.dialog = dialog;
+
+        this.view.setController(this);
+        this.view.setModel(model);
     }
 
+    // Este es el método que VALIDA Y GUARDA la clave nueva
     public void cambiarClave() {
         String claveActual = view.getClaveActual();
         String claveNueva = view.getClaveNueva();
@@ -58,5 +66,4 @@ public class Controller {
     public void cancelar() {
         dialog.dispose();
     }
-
 }

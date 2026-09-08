@@ -73,4 +73,30 @@ public class Controller {
     private boolean existe(String id) {
         return instance.encontrarUsuario(id) != null;
     }
+
+    // Este es el método que ABRE el diálogo de cambio de clave
+    public void cambiarClave() {
+        String id = view.getID();
+
+        if (id == null || id.isEmpty()) {
+            JOptionPane.showMessageDialog(view.getPanelLog(), "Ingrese su ID primero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!existe(id)) {
+            JOptionPane.showMessageDialog(view.getPanelLog(), "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JDialog dialog = new JDialog(loginWindow, "Cambiar Clave", true);
+
+        Sistema.presentation.cambiarContra.Model modelCC = new Sistema.presentation.cambiarContra.Model();
+        Sistema.presentation.cambiarContra.viewCambiarContra viewCC = new Sistema.presentation.cambiarContra.viewCambiarContra();
+        new Sistema.presentation.cambiarContra.Controller(modelCC, viewCC, id, dialog);
+
+        dialog.setContentPane(viewCC.getPanel());
+        dialog.pack();
+        dialog.setLocationRelativeTo(loginWindow);
+        dialog.setVisible(true);
+    }
 }
