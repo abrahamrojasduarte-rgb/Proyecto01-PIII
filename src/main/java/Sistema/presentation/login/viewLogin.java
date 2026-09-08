@@ -2,7 +2,6 @@ package Sistema.presentation.login;
 
 import Sistema.logic.Funcionario;
 import Sistema.logic.Usuario;
-import Sistema.presentation.funcionarios.Controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,17 +21,18 @@ public class viewLogin implements PropertyChangeListener{
     Model model;
     Controller controller;
 
-    public static Usuario getUsuario(){ return usuario;}
-    public static void setUsuario(Usuario usuario){viewLogin.usuario = usuario;}
-    public static void logout(){viewLogin.usuario = null;}
-    public static boolean isLoggedIn(){return usuario!=null;}
-
     public viewLogin() {
-
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.clear();
+            }
+        });
+
+        cambiarContrasenaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: conectar con el flujo de cambiarContra
             }
         });
     }
@@ -66,15 +66,17 @@ public class viewLogin implements PropertyChangeListener{
         return txtpass.getText();
     }
 
+    public JButton getCambiarContrasenaButton() {
+        return cambiarContrasenaButton;
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (Model.CURRENT.equals(evt.getPropertyName())) {
             Funcionario current = model.getCurrent();
-
             idTXT.setText(current.getNombre() != null ? current.getNombre() : "");
             txtpass.setText("");
         }
-
     }
 
 }

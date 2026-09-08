@@ -101,4 +101,12 @@ public class Service {
             }
         }
     }
+    public void actualizarClave(String id, String claveNueva) throws Exception {
+        Usuario usuario = encontrarUsuario(id);
+        if (usuario == null) {
+            throw new Exception("Usuario no encontrado");
+        }
+        usuario.setClave(claveNueva);
+        XmlPersister.instance().store(d);
+    }
 }

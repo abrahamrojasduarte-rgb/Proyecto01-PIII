@@ -2,6 +2,7 @@ package Sistema.presentation.funcionarios;
 
 import Sistema.Application;
 import Sistema.logic.Funcionario;
+import Sistema.logic.Rol;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -198,6 +199,8 @@ public class viewFuncionarios implements PropertyChangeListener{
         e.setId(IDregistro.getText());
         e.setNombre(nombreRegistro.getText());
         e.setTelefono(telefonoRegistro.getText());
+        e.setClave("456");
+        e.setRol(Rol.FUNCIONARIO);
         return e;
     }
 }

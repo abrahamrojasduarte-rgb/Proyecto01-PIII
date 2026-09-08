@@ -1,8 +1,6 @@
 package Sistema.presentation.categorias;
 
 import Sistema.logic.Service;
-import Sistema.presentation.funcionarios.Model;
-import Sistema.presentation.login.viewLogin;
 
 public class Controller {
     private Sistema.presentation.categorias.Model model = new Sistema.presentation.categorias.Model();
