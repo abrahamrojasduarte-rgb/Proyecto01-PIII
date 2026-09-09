@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewCategorias implements PropertyChangeListener {
     private Model model;
@@ -74,6 +75,23 @@ public class viewCategorias implements PropertyChangeListener {
                 }
             }
         });
+
+        imprimirButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar Reporte de Categorías");
+            fileChooser.setSelectedFile(new java.io.File("Reporte_Categorias.pdf"));
+
+            if (fileChooser.showSaveDialog(panelCategorias) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    String path = fileChooser.getSelectedFile().getAbsolutePath();
+                    PDFReportGenerator.generarReporteCategorias(model.getCategorias(), path);
+                    JOptionPane.showMessageDialog(panelCategorias, "PDF generado con éxito en:\n" + path, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(panelCategorias, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
     }
 
     public void setModel(Model model) {
