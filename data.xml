@@ -16,4 +16,29 @@
             <rol>ADMINISTRADOR</rol>
         </Admin>
     </Administradores>
+    <Categorias>
+        <Categoria>
+            <id>1</id>
+            <descripcion>Salas</descripcion>
+        </Categoria>
+        <Categoria>
+            <id>2</id>
+            <descripcion>Computadoras</descripcion>
+        </Categoria>
+        <Categoria>
+            <id>3</id>
+            <descripcion>Aula</descripcion>
+        </Categoria>
+    </Categorias>
+    <Recursos>
+        <Recurso>
+            <categoria>
+                <id>2</id>
+                <descripcion>Computadoras</descripcion>
+            </categoria>
+            <descripcion>Laptop Windows</descripcion>
+            <id>001</id>
+        </Recurso>
+    </Recursos>
+    <Reservas/>
 </data>
