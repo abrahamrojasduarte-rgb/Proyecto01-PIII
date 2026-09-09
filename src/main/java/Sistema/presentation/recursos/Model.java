@@ -1,33 +1,43 @@
-package Sistema.presentation.categorias;
+package Sistema.presentation.recursos;
 
 import Sistema.logic.CategoriaRecurso;
+import Sistema.logic.Recurso;
 import Sistema.presentation.AbstractModel;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model extends AbstractModel {
-    private CategoriaRecurso current;
+    private Recurso current;
+    private List<Recurso> recursos;
     private List<CategoriaRecurso> categorias;
 
     public static final String CURRENT = "current";
     public static final String LIST = "list";
+    public static final String CATEGORIAS = "categorias";
 
     public Model() {
-        current = new CategoriaRecurso();
+        current = new Recurso();
+        recursos = new ArrayList<>();
         categorias = new ArrayList<>();
     }
 
-    public CategoriaRecurso getCurrent() { return current; }
-    public void setCurrent(CategoriaRecurso current) {
+    public Recurso getCurrent() { return current; }
+    public void setCurrent(Recurso current) {
         this.current = current;
         firePropertyChange(CURRENT);
+    }
+
+    public List<Recurso> getRecursos() { return recursos; }
+    public void setRecursos(List<Recurso> recursos) {
+        this.recursos = recursos;
+        firePropertyChange(LIST);
     }
 
     public List<CategoriaRecurso> getCategorias() { return categorias; }
     public void setCategorias(List<CategoriaRecurso> categorias) {
         this.categorias = categorias;
-        firePropertyChange(LIST);
+        firePropertyChange(CATEGORIAS);
     }
 
     @Override
@@ -35,5 +45,6 @@ public class Model extends AbstractModel {
         super.addPropertyChangeListener(listener);
         firePropertyChange(CURRENT);
         firePropertyChange(LIST);
+        firePropertyChange(CATEGORIAS);
     }
 }

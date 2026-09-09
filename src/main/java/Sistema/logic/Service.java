@@ -3,9 +3,9 @@ package Sistema.logic;
 import Sistema.data.data;
 import Sistema.data.XmlPersister;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 public class Service {
     private data d;
     private static Service theInstance;
@@ -17,7 +17,6 @@ public class Service {
             d = new data();
         }
         crearAdminPorDefectoSiNoExiste();
-
     }
 
     public static Service instance() {
@@ -43,6 +42,7 @@ public class Service {
                 .findFirst()
                 .orElse(null);
         if (result == null) {
+            e.setClave(e.getId()); // Regla de negocio: clave inicial igual al ID
             d.getFuncionarios().add(e);
             guardar();
         } else {
@@ -57,6 +57,7 @@ public class Service {
                 .orElse(null);
         if (result != null) {
             d.getFuncionarios().remove(result);
+            guardar();
         } else {
             throw new Exception("Funcionario no existe");
         }
@@ -64,8 +65,8 @@ public class Service {
 
     public List<Funcionario> search(String id, String nombre) {
         return d.getFuncionarios().stream()
-                .filter(i -> (id == null || id.isEmpty() || i.getId().contains(id))
-                        && (nombre == null || nombre.isEmpty() || i.getNombre().contains(nombre)))
+                .filter(i -> (id == null || id.isEmpty() || i.getId().toLowerCase().contains(id.toLowerCase()))
+                        && (nombre == null || nombre.isEmpty() || i.getNombre().toLowerCase().contains(nombre.toLowerCase())))
                 .collect(Collectors.toList());
     }
 
@@ -73,7 +74,7 @@ public class Service {
         return d.getFuncionarios();
     }
 
-    public Usuario encontrarUsuario(String id){
+    public Usuario encontrarUsuario(String id) {
         Usuario result = d.getFuncionarios().stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst()
@@ -87,6 +88,7 @@ public class Service {
         }
         return result;
     }
+
     private void crearAdminPorDefectoSiNoExiste() {
         boolean hayAdmin = d.getAdministradors().stream()
                 .anyMatch(u -> u.getRol() == Rol.ADMINISTRADOR);
@@ -101,12 +103,104 @@ public class Service {
             }
         }
     }
+
     public void actualizarClave(String id, String claveNueva) throws Exception {
         Usuario usuario = encontrarUsuario(id);
         if (usuario == null) {
             throw new Exception("Usuario no encontrado");
         }
         usuario.setClave(claveNueva);
-        XmlPersister.instance().store(d);
+        guardar();
+    }
+
+    public void createCategoria(CategoriaRecurso c) throws Exception {
+        if (c.getID() <= 0) {
+            int nextId = d.getCategorias().stream()
+                    .mapToInt(CategoriaRecurso::getID)
+                    .max()
+                    .orElse(0) + 1;
+            c.setID(nextId);
+        }
+        d.getCategorias().add(c);
+        guardar();
+    }
+
+    public void updateCategoria(CategoriaRecurso c) throws Exception {
+        CategoriaRecurso exist = findCategoriaById(c.getID());
+        if (exist == null) throw new Exception("Categoría no encontrada");
+        exist.setDescripcion(c.getDescripcion());
+        guardar();
+    }
+
+    public void deleteCategoria(int id) throws Exception {
+        CategoriaRecurso c = findCategoriaById(id);
+        if (c == null) throw new Exception("Categoría no existe");
+
+        boolean tieneRecursos = d.getRecursos().stream()
+                .anyMatch(r -> r.getCategoria() != null && r.getCategoria().getID() == id);
+        if (tieneRecursos) throw new Exception("No se puede eliminar: tiene recursos asociados");
+
+        d.getCategorias().remove(c);
+        guardar();
+    }
+
+    public CategoriaRecurso findCategoriaById(int id) {
+        return d.getCategorias().stream()
+                .filter(c -> c.getID() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<CategoriaRecurso> searchCategorias(String descripcion) {
+        return d.getCategorias().stream()
+                .filter(c -> descripcion == null || descripcion.trim().isEmpty() ||
+                        c.getDescripcion().toLowerCase().contains(descripcion.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    public List<CategoriaRecurso> findAllCategorias() {
+        return d.getCategorias();
+    }
+
+    public void createRecurso(Recurso r) throws Exception {
+        Recurso exist = findRecursoById(r.getId());
+        if (exist != null) throw new Exception("El recurso con ID/Activo ya existe");
+        d.getRecursos().add(r);
+        guardar();
+    }
+
+    public void updateRecurso(Recurso r) throws Exception {
+        Recurso exist = findRecursoById(r.getId());
+        if (exist == null) throw new Exception("Recurso no encontrado");
+        exist.setDescripcion(r.getDescripcion());
+        exist.setCategoria(r.getCategoria());
+        guardar();
+    }
+
+    public void deleteRecurso(String id) throws Exception {
+        Recurso r = findRecursoById(id);
+        if (r == null) throw new Exception("Recurso no existe");
+        d.getRecursos().remove(r);
+        guardar();
+    }
+
+    public Recurso findRecursoById(String id) {
+        return d.getRecursos().stream()
+                .filter(r -> r.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Recurso> searchRecursosPorCategoria(CategoriaRecurso cat) {
+        if (cat == null || cat.getID() == -1) {
+            return d.getRecursos();
+        }
+        return d.getRecursos().stream()
+                .filter(r -> r.getCategoria() != null && r.getCategoria().getID() == cat.getID())
+                .collect(Collectors.toList());
+    }
+
+    public List<Recurso> findAllRecursos() {
+        return d.getRecursos();
     }
 }

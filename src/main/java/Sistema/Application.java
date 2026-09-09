@@ -3,6 +3,7 @@ import Sistema.presentation.funcionarios.Controller;
 import Sistema.presentation.funcionarios.Model;
 import Sistema.presentation.funcionarios.viewFuncionarios;
 import Sistema.presentation.login.viewLogin;
+import Sistema.presentation.recursos.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +58,18 @@ public class Application {
                 Sistema.presentation.categorias.viewCategorias catView = new Sistema.presentation.categorias.viewCategorias();
                 new Sistema.presentation.categorias.Controller(catModel, catView);
                 tabbedPane.addTab("Categorias", catView.getPanelCategorias());
+
+                Sistema.presentation.recursos.Model recModel = new Sistema.presentation.recursos.Model();
+                Sistema.presentation.recursos.viewRecursos recView = new Sistema.presentation.recursos.viewRecursos();
+                Sistema.presentation.recursos.Controller recController = new Sistema.presentation.recursos.Controller(recModel, recView);
+                tabbedPane.addTab("Recursos", recView.getPanelRecursos());
+
+                tabbedPane.addChangeListener(e -> {
+                    int selectedIndex = tabbedPane.getSelectedIndex();
+                    if (selectedIndex != -1 && "Recursos".equals(tabbedPane.getTitleAt(selectedIndex))) {
+                        recController.refresh();
+                    }
+                });
                 break;
 
             case FUNCIONARIO:
