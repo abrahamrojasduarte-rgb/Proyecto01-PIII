@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewFuncionarios implements PropertyChangeListener{
     private JPanel FuncionarioAdmin;
@@ -68,13 +69,6 @@ public class viewFuncionarios implements PropertyChangeListener{
             }
         });
 
-        imprimirButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(FuncionarioAdmin, "Funcionalidad de impresión pendiente", "", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
         limpiarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,6 +79,21 @@ public class viewFuncionarios implements PropertyChangeListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.search(idBuscar.getText(), nombreBuscar.getText());
+            }
+        });
+        imprimirButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar Reporte de Funcionarios");
+            fileChooser.setSelectedFile(new java.io.File("Reporte_Funcionarios.pdf"));
+
+            if (fileChooser.showSaveDialog(FuncionarioAdmin) == JFileChooser.APPROVE_OPTION) {
+                try {
+                    String path = fileChooser.getSelectedFile().getAbsolutePath();
+                    PDFReportGenerator.generarReporteFuncionarios(model.getFuncionarios(), path);
+                    JOptionPane.showMessageDialog(FuncionarioAdmin, "PDF generado con éxito en:\n" + path, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(FuncionarioAdmin, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

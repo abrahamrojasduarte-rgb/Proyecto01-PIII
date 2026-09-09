@@ -6,6 +6,12 @@ import Sistema.logic.CategoriaRecurso;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Service {
     private data d;
@@ -207,4 +213,97 @@ public class Service {
     public List<Recurso> findAllRecursos() {
         return d.getRecursos();
     }
+
+    public List<Reserva> findReservasByFuncionario(String idFuncionario) {
+        return d.getReservas().stream()
+                .filter(r -> r.getFuncionario() != null
+                        && r.getFuncionario().getId().equals(idFuncionario))
+                .collect(Collectors.toList());
+    }
+
+    public Reserva findReservaById(int id) {
+        return d.getReservas().stream()
+                .filter(r -> r.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private int nextReservaId() {
+        return d.getReservas().stream()
+                .mapToInt(Reserva::getId)
+                .max()
+                .orElse(0) + 1;
+    }
+
+    private boolean estaOcupado(Recurso recurso, LocalDate fecha, LocalTime inicio, LocalTime fin) {
+        for (Reserva r : d.getReservas()) {
+            if (!r.getFecha().equals(fecha)) continue;
+
+            boolean seCruzan = inicio.isBefore(r.getHoraTermina()) && fin.isAfter(r.getHoraInicia());
+            if (!seCruzan) continue;
+
+            for (Recurso usado : r.getRecursos()) {
+                if (usado.getId().equals(recurso.getId())) return true;
+            }
+        }
+        return false;
+    }
+
+    private Recurso buscarLibre(CategoriaRecurso categoria, LocalDate fecha, LocalTime inicio, LocalTime fin) {
+        for (Recurso r : d.getRecursos()) {
+            if (r.getCategoria() == null) continue;
+            if (r.getCategoria().getID() != categoria.getID()) continue;
+            if (!estaOcupado(r, fecha, inicio, fin)) return r;
+        }
+        return null;
+    }
+
+    public void createReserva(String actividad, Funcionario funcionario, LocalDate fecha,
+                              LocalTime inicio, LocalTime fin, List<CategoriaRecurso> categorias) throws Exception {
+
+        List<Recurso> asignados = new ArrayList<>();
+        List<String> noDisponibles = new ArrayList<>();
+
+        for (CategoriaRecurso c : categorias) {
+            Recurso libre = buscarLibre(c, fecha, inicio, fin);
+            if (libre == null) {
+                noDisponibles.add(c.getDescripcion());
+            } else {
+                asignados.add(libre);
+            }
+        }
+
+        if (!noDisponibles.isEmpty()) {
+            throw new Exception("No hay disponibilidad en: " + String.join(", ", noDisponibles));
+        }
+
+        Reserva reserva = new Reserva(nextReservaId(), actividad, funcionario, fecha, inicio, fin);
+        reserva.setRecursos(asignados);
+        d.getReservas().add(reserva);
+        guardar();
+    }
+
+    public void deleteReserva(int id) throws Exception {
+        Reserva r = findReservaById(id);
+        if (r == null) throw new Exception("La reserva no existe");
+        d.getReservas().remove(r);
+        guardar();
+    }
+
+    public ReservaExtraccion extraerReserva(String frase) {
+        OpenAiChatModel aiModel = OpenAiChatModel.builder()
+                .baseUrl("http://langchain4j.dev/demo/openai/v1")
+                .apiKey("demo")
+                .modelName("gpt-4o-mini")
+                .build();
+
+        ReservaExtractorService aiService = AiServices.create(ReservaExtractorService.class, aiModel);
+
+        String listaCategorias = d.getCategorias().stream()
+                .map(CategoriaRecurso::getDescripcion)
+                .collect(Collectors.joining("\n"));
+
+        return aiService.extraer(frase, listaCategorias, LocalDate.now().toString());
+    }
+
 }

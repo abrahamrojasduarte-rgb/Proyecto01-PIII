@@ -9,10 +9,17 @@ import com.itextpdf.layout.properties.TextAlignment;
 import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Funcionario;
 import Sistema.logic.Recurso;
+import Sistema.logic.Reserva;
 
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
 
 public class PDFReportGenerator {
+
+    private static final DateTimeFormatter F_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter F_HORA = DateTimeFormatter.ofPattern("HH:mm");
 
     public static void generarReporteFuncionarios(List<Funcionario> lista, String destPath) throws Exception {
         PdfWriter writer = new PdfWriter(destPath);
@@ -89,4 +96,55 @@ public class PDFReportGenerator {
         document.add(table);
         document.close();
     }
+
+    public static void generarReporteReservas(List<Reserva> lista, String destPath) throws Exception {
+        PdfWriter writer = new PdfWriter(destPath);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
+        Paragraph header = new Paragraph("Listado de Reservas")
+                .setFontSize(18)
+                .setBold()
+                .setTextAlignment(TextAlignment.CENTER);
+        document.add(header);
+
+        Table table = new Table(new float[]{80f, 150f, 80f, 90f, 130f, 80f});
+        table.addHeaderCell("Id");
+        table.addHeaderCell("Actividad");
+        table.addHeaderCell("Fecha");
+        table.addHeaderCell("Horario");
+        table.addHeaderCell("Recursos");
+        table.addHeaderCell("Estado");
+
+        for (Reserva r : lista) {
+            table.addCell(String.format("RES-%06d", r.getId()));
+            table.addCell(r.getActividad() != null ? r.getActividad() : "");
+            table.addCell(r.getFecha() != null ? r.getFecha().format(F_FECHA) : "");
+
+            String horario = "";
+            if (r.getHoraInicia() != null && r.getHoraTermina() != null) {
+                horario = r.getHoraInicia().format(F_HORA) + " - " + r.getHoraTermina().format(F_HORA);
+            }
+            table.addCell(horario);
+
+            String recursos = "";
+            if (r.getRecursos() != null && !r.getRecursos().isEmpty()) {
+                recursos = r.getRecursos().stream()
+                        .map(Recurso::getId)
+                        .collect(Collectors.joining(", "));
+            }
+            table.addCell(recursos);
+
+            String estado = "ACTIVA";
+            if (r.getFecha() != null && r.getHoraTermina() != null) {
+                LocalDateTime fin = LocalDateTime.of(r.getFecha(), r.getHoraTermina());
+                if (fin.isBefore(LocalDateTime.now())) estado = "FINALIZADA";
+            }
+            table.addCell(estado);
+        }
+
+        document.add(table);
+        document.close();
+    }
 }
+
