@@ -1,17 +1,31 @@
 package Sistema.logic;
 
+import Sistema.data.LocalDateAdapter;
+import Sistema.data.LocalTimeAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@XmlRootElement(name = "reserva")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Reserva {
     private int id;
     private String actividad;
     private Funcionario funcionario;
+
+    @XmlElementWrapper(name = "Recursos")
+    @XmlElement(name = "Recurso")
     private List<Recurso> recursos;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate fecha;
+    @XmlJavaTypeAdapter(LocalTimeAdapter.class)
     private LocalTime horaInicia;
+    @XmlJavaTypeAdapter(LocalTimeAdapter.class)
     private LocalTime horaTermina;
 
     public Reserva(){

@@ -73,7 +73,10 @@ public class Application {
                 break;
 
             case FUNCIONARIO:
-                // TODO: tabs específicos del empleado
+                Sistema.presentation.reserva.Model resModel = new Sistema.presentation.reserva.Model();
+                Sistema.presentation.reserva.viewReserva resView = new Sistema.presentation.reserva.viewReserva();
+                new Sistema.presentation.reserva.Controller(resModel, resView);
+                tabbedPane.addTab("Reservas", resView.getPanelReserva());
                 break;
         }
 

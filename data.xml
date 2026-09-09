@@ -33,11 +33,35 @@
     <Recursos>
         <Recurso>
             <categoria>
+                <id>1</id>
+                <descripcion>Salas</descripcion>
+            </categoria>
+            <descripcion>Sala 1 primer piso</descripcion>
+            <id>SALA-01</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
+                <id>1</id>
+                <descripcion>Salas</descripcion>
+            </categoria>
+            <descripcion>Sala 2 segundo piso</descripcion>
+            <id>SALA-02</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
                 <id>2</id>
                 <descripcion>Computadoras</descripcion>
             </categoria>
             <descripcion>Laptop Windows</descripcion>
             <id>001</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
+                <id>2</id>
+                <descripcion>Computadoras</descripcion>
+            </categoria>
+            <descripcion>Laptop #238715</descripcion>
+            <id>238715</id>
         </Recurso>
     </Recursos>
     <Reservas/>
