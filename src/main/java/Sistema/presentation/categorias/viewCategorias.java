@@ -8,17 +8,17 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class viewCategorias implements PropertyChangeListener {
-    private Model model;
-    private Controller controller;
+    private Sistema.presentation.categorias.Model model;
+    private Sistema.presentation.categorias.Controller controller;
 
     private JPanel panelCategorias;
-    private JTextField Descripciontxt; // Campo de texto para búsqueda
+    private JTextField Descripciontxt;
     private JButton buscarButton;
     private JButton imprimirButton;
     private JPanel busquedaPanel;
     private JPanel categoriaPanel;
     private JTextField idCategoria;
-    private JTextField descripcion; // Campo de texto del formulario
+    private JTextField descripcion;
     private JButton guardarButton;
     private JButton borrarButton;
     private JButton limpiarButton;
@@ -99,7 +99,7 @@ public class viewCategorias implements PropertyChangeListener {
 
             case Model.CURRENT:
                 CategoriaRecurso current = model.getCurrent();
-                idCategoria.setText(current.getID() == 0 ? "" : String.valueOf(current.getID()));
+                idCategoria.setText(current.getID() == null ? "" : String.valueOf(current.getID()));
                 descripcion.setText(current.getDescripcion() == null ? "" : current.getDescripcion());
                 break;
         }

@@ -2,6 +2,7 @@ package Sistema.logic;
 
 import Sistema.data.data;
 import Sistema.data.XmlPersister;
+import Sistema.logic.CategoriaRecurso;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -113,38 +114,41 @@ public class Service {
         guardar();
     }
 
-    public void createCategoria(CategoriaRecurso c) throws Exception {
-        if (c.getID() <= 0) {
-            int nextId = d.getCategorias().stream()
-                    .mapToInt(CategoriaRecurso::getID)
-                    .max()
-                    .orElse(0) + 1;
-            c.setID(nextId);
-        }
-        d.getCategorias().add(c);
+    public void createCategoria(CategoriaRecurso categoria) throws Exception {
+        categoria.setID(generarSiguienteIdCategoria());
+        d.getCategorias().add(categoria);
         guardar();
     }
 
+    private String generarSiguienteIdCategoria() {
+        int maxNumero = d.getCategorias().stream()
+                .map(CategoriaRecurso::getID)
+                .filter(id -> id != null && id.startsWith("CAT-"))
+                .mapToInt(id -> Integer.parseInt(id.substring(4)))
+                .max()
+                .orElse(0);
+
+        return String.format("CAT-%06d", maxNumero + 1);
+    }
     public void updateCategoria(CategoriaRecurso c) throws Exception {
-        CategoriaRecurso exist = findCategoriaById(c.getID());
-        if (exist == null) throw new Exception("Categoría no encontrada");
-        exist.setDescripcion(c.getDescripcion());
+        CategoriaRecurso existente = d.getCategorias().stream()
+                .filter(cat -> cat.getID().equals(c.getID()))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Categoría no encontrada"));
+        existente.setDescripcion(c.getDescripcion());
         guardar();
     }
 
-    public void deleteCategoria(int id) throws Exception {
-        CategoriaRecurso c = findCategoriaById(id);
-        if (c == null) throw new Exception("Categoría no existe");
-
-        boolean tieneRecursos = d.getRecursos().stream()
-                .anyMatch(r -> r.getCategoria() != null && r.getCategoria().getID() == id);
-        if (tieneRecursos) throw new Exception("No se puede eliminar: tiene recursos asociados");
-
-        d.getCategorias().remove(c);
+    public void deleteCategoria(String id) throws Exception {
+        CategoriaRecurso existente = d.getCategorias().stream()
+                .filter(cat -> cat.getID().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Categoría no encontrada"));
+        d.getCategorias().remove(existente);
         guardar();
     }
 
-    public CategoriaRecurso findCategoriaById(int id) {
+    public CategoriaRecurso findCategoriaById(String id) {
         return d.getCategorias().stream()
                 .filter(c -> c.getID() == id)
                 .findFirst()
@@ -192,7 +196,7 @@ public class Service {
     }
 
     public List<Recurso> searchRecursosPorCategoria(CategoriaRecurso cat) {
-        if (cat == null || cat.getID() == -1) {
+        if (cat == null || cat.getID() == null) {
             return d.getRecursos();
         }
         return d.getRecursos().stream()

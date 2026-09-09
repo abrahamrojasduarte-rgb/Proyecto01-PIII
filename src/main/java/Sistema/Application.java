@@ -71,7 +71,6 @@ public class Application {
                     }
                 });
                 break;
-
             case FUNCIONARIO:
                 // TODO: tabs específicos del empleado
                 break;

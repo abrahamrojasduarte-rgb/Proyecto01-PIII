@@ -37,7 +37,7 @@ public class Controller {
             throw new Exception("La descripción de la categoría no puede estar vacía.");
         }
 
-        if (categoria.getID() == 0) {
+        if (categoria.getID() == null) {
             Service.instance().createCategoria(categoria);
         } else {
             Service.instance().updateCategoria(categoria);
@@ -46,7 +46,7 @@ public class Controller {
     }
 
     public void delete(CategoriaRecurso categoria) throws Exception {
-        if (categoria == null || categoria.getID() == 0) {
+        if (categoria == null || categoria.getID() == null) {
             throw new Exception("Debe seleccionar una categoría válida para borrar.");
         }
         Service.instance().deleteCategoria(categoria.getID());

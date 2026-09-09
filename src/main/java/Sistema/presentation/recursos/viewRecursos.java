@@ -105,7 +105,7 @@ public class viewRecursos implements PropertyChangeListener {
 
     private void buscar() {
         CategoriaRecurso seleccionada = (CategoriaRecurso) buscarCategoriaCmb.getSelectedItem();
-        if (seleccionada != null && seleccionada.getID() == -1) {
+        if (seleccionada != null && seleccionada.getID() == null) {
             controller.filterByCategoria(null);
         } else {
             controller.filterByCategoria(seleccionada);
@@ -135,7 +135,7 @@ public class viewRecursos implements PropertyChangeListener {
                 DefaultComboBoxModel<CategoriaRecurso> cbModel = new DefaultComboBoxModel<>();
                 DefaultComboBoxModel<CategoriaRecurso> filterModel = new DefaultComboBoxModel<>();
 
-                CategoriaRecurso todas = new CategoriaRecurso(-1, "--- Todas ---");
+                CategoriaRecurso todas = new CategoriaRecurso(null, "--- Todas ---");
                 filterModel.addElement(todas);
 
                 if (model.getCategorias() != null) {

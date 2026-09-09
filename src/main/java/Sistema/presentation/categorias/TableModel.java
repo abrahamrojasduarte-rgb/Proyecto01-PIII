@@ -4,7 +4,7 @@ import Sistema.logic.CategoriaRecurso;
 import Sistema.presentation.AbstractTableModel;
 import java.util.List;
 
-public class TableModel extends AbstractTableModel<CategoriaRecurso> {
+public class TableModel extends AbstractTableModel<CategoriaRecurso> implements javax.swing.table.TableModel{
     public static final int ID = 0;
     public static final int DESCRIPCION = 1;
 

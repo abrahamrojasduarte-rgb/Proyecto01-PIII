@@ -15,6 +15,13 @@
             <nombre>Juan</nombre>
             <telefono>67890</telefono>
         </Funcionario>
+        <Funcionario>
+            <clave>333</clave>
+            <id>333</id>
+            <rol>FUNCIONARIO</rol>
+            <nombre>Johanna</nombre>
+            <telefono>3456</telefono>
+        </Funcionario>
     </Funcionarios>
     <Administradores>
         <Admin>
@@ -25,16 +32,8 @@
     </Administradores>
     <Categorias>
         <Categoria>
-            <id>1</id>
-            <descripcion>Salas</descripcion>
-        </Categoria>
-        <Categoria>
-            <id>2</id>
-            <descripcion>Computadoras</descripcion>
-        </Categoria>
-        <Categoria>
-            <id>3</id>
-            <descripcion>Aula</descripcion>
+            <id>CAT-000001</id>
+            <descripcion>Aula para 10</descripcion>
         </Categoria>
     </Categorias>
     <Recursos>
@@ -45,6 +44,22 @@
             </categoria>
             <descripcion>Laptop Windows</descripcion>
             <id>001</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
+                <id>2</id>
+                <descripcion>Computadoras</descripcion>
+            </categoria>
+            <descripcion>Laptop HP</descripcion>
+            <id>12345432</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
+                <id>3</id>
+                <descripcion>Aula</descripcion>
+            </categoria>
+            <descripcion>Aula para 10</descripcion>
+            <id>98779877</id>
         </Recurso>
     </Recursos>
     <Reservas/>
