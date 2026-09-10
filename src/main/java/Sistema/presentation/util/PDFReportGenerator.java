@@ -102,10 +102,7 @@ public class PDFReportGenerator {
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
 
-        Paragraph header = new Paragraph("Listado de Reservas")
-                .setFontSize(18)
-                .setBold()
-                .setTextAlignment(TextAlignment.CENTER);
+        Paragraph header = new Paragraph("Listado de Reservas").setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER);
         document.add(header);
 
         Table table = new Table(new float[]{80f, 150f, 80f, 90f, 130f, 80f});
@@ -143,6 +140,28 @@ public class PDFReportGenerator {
             table.addCell(estado);
         }
 
+        document.add(table);
+        document.close();
+    }
+
+    public static void generarReporteMatriz(String titulo, String[] columnas, java.util.List<String[]> filas, String desPath) throws Exception{
+        PdfWriter writer = new PdfWriter(desPath);
+        PdfDocument pdf = new PdfDocument(writer);
+        pdf.setDefaultPageSize(com.itextpdf.kernel.geom.PageSize.A4.rotate());
+        Document document = new Document(pdf);
+
+        Paragraph header = new Paragraph(titulo).setFontSize(16).setBold().setTextAlignment(TextAlignment.CENTER);
+        document.add(header);
+        Table table = new Table(columnas.length);
+
+        for(String columna : columnas){
+            table.addHeaderCell(columna);
+        }
+        for (String[] fila : filas){
+            for(String celda : fila){
+                table.addCell(celda == null ? "" :celda);
+            }
+        }
         document.add(table);
         document.close();
     }

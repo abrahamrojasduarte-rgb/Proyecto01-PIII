@@ -156,7 +156,7 @@ public class Service {
 
     public CategoriaRecurso findCategoriaById(String id) {
         return d.getCategorias().stream()
-                .filter(c -> c.getID() == id)
+                .filter(c -> c.getID().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -206,7 +206,7 @@ public class Service {
             return d.getRecursos();
         }
         return d.getRecursos().stream()
-                .filter(r -> r.getCategoria() != null && r.getCategoria().getID() == cat.getID())
+                .filter(r -> r.getCategoria() != null && cat.getID().equals(r.getCategoria().getID()))
                 .collect(Collectors.toList());
     }
 
@@ -252,7 +252,7 @@ public class Service {
     private Recurso buscarLibre(CategoriaRecurso categoria, LocalDate fecha, LocalTime inicio, LocalTime fin) {
         for (Recurso r : d.getRecursos()) {
             if (r.getCategoria() == null) continue;
-            if (r.getCategoria().getID() != categoria.getID()) continue;
+            if (!r.getCategoria().getID().equals(categoria.getID())) continue;
             if (!estaOcupado(r, fecha, inicio, fin)) return r;
         }
         return null;
@@ -305,5 +305,7 @@ public class Service {
 
         return aiService.extraer(frase, listaCategorias, LocalDate.now().toString());
     }
-
+    public List<Reserva> findAllReservas(){
+        return d.getReservas();
+    }
 }

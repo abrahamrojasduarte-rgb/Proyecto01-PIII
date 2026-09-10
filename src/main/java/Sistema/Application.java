@@ -64,6 +64,11 @@ public class Application {
                 Sistema.presentation.recursos.Controller recController = new Sistema.presentation.recursos.Controller(recModel, recView);
                 tabbedPane.addTab("Recursos", recView.getPanelRecursos());
 
+                Sistema.presentation.calendarizacion.Model calenAModel = new Sistema.presentation.calendarizacion.Model();
+                Sistema.presentation.calendarizacion.viewCalendarizacion calenAView = new Sistema.presentation.calendarizacion.viewCalendarizacion();
+                new Sistema.presentation.calendarizacion.Controller(calenAModel, calenAView);
+                tabbedPane.addTab("Calendarizacion", calenAView.getPanelCalendarizacion());
+
                 tabbedPane.addChangeListener(e -> {
                     int selectedIndex = tabbedPane.getSelectedIndex();
                     if (selectedIndex != -1 && "Recursos".equals(tabbedPane.getTitleAt(selectedIndex))) {
@@ -76,6 +81,12 @@ public class Application {
                 Sistema.presentation.reserva.viewReserva resView = new Sistema.presentation.reserva.viewReserva();
                 new Sistema.presentation.reserva.Controller(resModel, resView);
                 tabbedPane.addTab("Reservas", resView.getPanelReserva());
+
+                Sistema.presentation.calendarizacion.Model calenFModel = new Sistema.presentation.calendarizacion.Model();
+                Sistema.presentation.calendarizacion.viewCalendarizacion calenFView = new Sistema.presentation.calendarizacion.viewCalendarizacion();
+                new Sistema.presentation.calendarizacion.Controller(calenFModel, calenFView);
+                tabbedPane.addTab("Calendarizacion", calenFView.getPanelCalendarizacion());
+
                 break;
         }
 
