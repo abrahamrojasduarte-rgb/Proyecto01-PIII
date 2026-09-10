@@ -69,6 +69,11 @@ public class Application {
                 new Sistema.presentation.calendarizacion.Controller(calenAModel, calenAView);
                 tabbedPane.addTab("Calendarizacion", calenAView.getPanelCalendarizacion());
 
+                Sistema.presentation.actividades.Model actAModel = new Sistema.presentation.actividades.Model();
+                Sistema.presentation.actividades.viewActividades actAView = new Sistema.presentation.actividades.viewActividades();
+                new Sistema.presentation.actividades.Controller(actAModel,actAView);
+                tabbedPane.addTab("Actividades", actAView.getPanelActividades());
+
                 tabbedPane.addChangeListener(e -> {
                     int selectedIndex = tabbedPane.getSelectedIndex();
                     if (selectedIndex != -1 && "Recursos".equals(tabbedPane.getTitleAt(selectedIndex))) {
@@ -86,6 +91,11 @@ public class Application {
                 Sistema.presentation.calendarizacion.viewCalendarizacion calenFView = new Sistema.presentation.calendarizacion.viewCalendarizacion();
                 new Sistema.presentation.calendarizacion.Controller(calenFModel, calenFView);
                 tabbedPane.addTab("Calendarizacion", calenFView.getPanelCalendarizacion());
+
+                Sistema.presentation.actividades.Model actFModel = new Sistema.presentation.actividades.Model();
+                Sistema.presentation.actividades.viewActividades actFView = new Sistema.presentation.actividades.viewActividades();
+                new Sistema.presentation.actividades.Controller(actFModel,actFView);
+                tabbedPane.addTab("Actividades", actFView.getPanelActividades());
 
                 break;
         }

@@ -181,7 +181,7 @@ public class viewReserva implements PropertyChangeListener {
         for (int i = 0; i < categoriasList.getModel().getSize(); i++) {
             CategoriaRecurso categoria = categoriasList.getModel().getElementAt(i);
             for (CategoriaRecurso seleccionada : seleccionadas) {
-                if (seleccionada.getID() == categoria.getID()) {
+                if (seleccionada.getID().equals(categoria.getID())) {
                     indices.add(i);
                     break;
                 }

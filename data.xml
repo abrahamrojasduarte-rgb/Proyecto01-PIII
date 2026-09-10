@@ -39,28 +39,37 @@
     <Recursos>
         <Recurso>
             <categoria>
-                <id>2</id>
-                <descripcion>Computadoras</descripcion>
+                <id>CAT-000001</id>
+                <descripcion>Aula para 10</descripcion>
             </categoria>
-            <descripcion>Laptop Windows</descripcion>
-            <id>001</id>
-        </Recurso>
-        <Recurso>
-            <categoria>
-                <id>2</id>
-                <descripcion>Computadoras</descripcion>
-            </categoria>
-            <descripcion>Laptop HP</descripcion>
-            <id>12345432</id>
-        </Recurso>
-        <Recurso>
-            <categoria>
-                <id>3</id>
-                <descripcion>Aula</descripcion>
-            </categoria>
-            <descripcion>Aula para 10</descripcion>
-            <id>98779877</id>
+            <descripcion>Aula para 10 en el primer piso</descripcion>
+            <id>543</id>
         </Recurso>
     </Recursos>
-    <Reservas/>
+    <Reservas>
+        <Reserva>
+            <id>1</id>
+            <actividad>Reunion Importante</actividad>
+            <funcionario>
+                <clave>789</clave>
+                <id>111</id>
+                <rol>FUNCIONARIO</rol>
+                <nombre>Joao</nombre>
+                <telefono>12345</telefono>
+            </funcionario>
+            <Recursos>
+                <Recurso>
+                    <categoria>
+                        <id>CAT-000001</id>
+                        <descripcion>Aula para 10</descripcion>
+                    </categoria>
+                    <descripcion>Aula para 10 en el primer piso</descripcion>
+                    <id>543</id>
+                </Recurso>
+            </Recursos>
+            <fecha>2026-09-10</fecha>
+            <horaInicia>09:00</horaInicia>
+            <horaTermina>11:00</horaTermina>
+        </Reserva>
+    </Reservas>
 </data>
