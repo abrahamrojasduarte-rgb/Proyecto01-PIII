@@ -5,10 +5,13 @@ import Sistema.logic.Funcionario;
 import Sistema.logic.Rol;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import Sistema.presentation.Highlighter;
 import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewFuncionarios implements PropertyChangeListener{
@@ -96,6 +99,14 @@ public class viewFuncionarios implements PropertyChangeListener{
                 }
             }
         });
+
+        Highlighter highlighter = new Highlighter(Color.green);
+        IDregistro.addMouseListener(highlighter);
+        nombreRegistro.addMouseListener(highlighter);
+        telefonoRegistro.addMouseListener(highlighter);
+        idBuscar.addMouseListener(highlighter);
+        nombreBuscar.addMouseListener(highlighter);
+
     }
 
     public JPanel getFuncionarioAdmin() {

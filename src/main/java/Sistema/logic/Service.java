@@ -77,6 +77,15 @@ public class Service {
                 .collect(Collectors.toList());
     }
 
+    public List<Recurso> searchRecursos(String categoriaId, String descripcion) {
+        return d.getRecursos().stream()
+                .filter(r -> (categoriaId == null || categoriaId.isEmpty()
+                        || (r.getCategoria() != null && r.getCategoria().getID().equals(categoriaId)))
+                        && (descripcion == null || descripcion.isEmpty()
+                        || r.getDescripcion().toLowerCase().contains(descripcion.toLowerCase())))
+                .collect(Collectors.toList());
+    }
+
     public List<Funcionario> findAll() {
         return d.getFuncionarios();
     }

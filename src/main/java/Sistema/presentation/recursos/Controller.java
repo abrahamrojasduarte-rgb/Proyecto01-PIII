@@ -4,6 +4,8 @@ import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Recurso;
 import Sistema.logic.Service;
 
+import java.util.List;
+
 public class Controller {
     private Model model;
     private viewRecursos view;
@@ -22,6 +24,12 @@ public class Controller {
         model.setCategorias(Service.instance().findAllCategorias());
         model.setRecursos(Service.instance().findAllRecursos());
         model.setCurrent(new Recurso());
+    }
+
+    public void search(CategoriaRecurso categoriaSeleccionada, String descripcion) {
+        String categoriaId = categoriaSeleccionada == null ? "" : categoriaSeleccionada.getID();
+        List<Recurso> resultados = Service.instance().searchRecursos(categoriaId, descripcion);
+        model.setRecursos(resultados);
     }
 
     public void clear() {

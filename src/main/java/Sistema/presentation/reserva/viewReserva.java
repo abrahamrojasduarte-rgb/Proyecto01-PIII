@@ -2,9 +2,11 @@ package Sistema.presentation.reserva;
 
 import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Reserva;
+import Sistema.presentation.Highlighter;
 import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -101,6 +103,10 @@ public class viewReserva implements PropertyChangeListener {
                 }
             }
         });
+
+        Highlighter highlighter = new Highlighter(Color.green);
+        actividadTxt.addMouseListener(highlighter);
+        fraseTxt.addMouseListener(highlighter);
     }
 
     public void setModel(Model model) {

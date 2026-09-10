@@ -2,10 +2,13 @@ package Sistema.presentation.login;
 
 import Sistema.logic.Funcionario;
 import Sistema.logic.Usuario;
+import Sistema.presentation.Highlighter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -35,6 +38,13 @@ public class viewLogin implements PropertyChangeListener{
                 controller.cambiarClave();
             }
         });
+
+        Highlighter highlighter = new Highlighter(Color.green);
+        idTXT.addMouseListener(highlighter);
+        txtpass.addMouseListener(highlighter);
+
+    }
+    private static void addMouseListener(MouseAdapter mouseAdapter) {
     }
 
     public void setController(Controller controller) {

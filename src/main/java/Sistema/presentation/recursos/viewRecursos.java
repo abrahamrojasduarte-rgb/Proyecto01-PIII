@@ -2,9 +2,11 @@ package Sistema.presentation.recursos;
 
 import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Recurso;
+import Sistema.presentation.Highlighter;
 import Sistema.presentation.util.PDFReportGenerator;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -46,10 +48,16 @@ public class viewRecursos implements PropertyChangeListener {
             if (controller != null) controller.clear();
         });
         pdfBtn.addActionListener(e -> generarPDF());
-        buscarBtn.addActionListener(e -> buscar());
+        buscarBtn.addActionListener(e -> {
+            if (controller != null) {
+                controller.search((CategoriaRecurso) buscarCategoriaCmb.getSelectedItem(), descripcionTxt.getText());            }
+        });
+
+        Highlighter highlighter = new Highlighter(Color.green);
+        idTxt.addMouseListener(highlighter);
+        descripcionTxt.addMouseListener(highlighter);
     }
 
-    // Getter del panel principal para agregarlo al JFrame o JDialog
     public JPanel getPanelRecursos() {
         return panelRecursos;
     }
@@ -103,14 +111,6 @@ public class viewRecursos implements PropertyChangeListener {
         }
     }
 
-    private void buscar() {
-        CategoriaRecurso seleccionada = (CategoriaRecurso) buscarCategoriaCmb.getSelectedItem();
-        if (seleccionada != null && seleccionada.getID() == null) {
-            controller.filterByCategoria(null);
-        } else {
-            controller.filterByCategoria(seleccionada);
-        }
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

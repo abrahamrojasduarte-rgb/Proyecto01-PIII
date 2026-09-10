@@ -1,8 +1,10 @@
 package Sistema.presentation.cambiarContra;
 
 import Sistema.logic.Usuario;
+import Sistema.presentation.Highlighter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +33,11 @@ public class viewCambiarContra {
                 controller.cancelar();
             }
         });
+
+        Highlighter highlighter = new Highlighter(Color.green);
+        actualtxt.addMouseListener(highlighter);
+        nueva1txt.addMouseListener(highlighter);
+        nueva2txt.addMouseListener(highlighter);
     }
 
     public JPanel getPanelContra() {

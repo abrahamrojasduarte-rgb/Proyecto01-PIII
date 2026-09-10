@@ -2,10 +2,15 @@ package Sistema.presentation.categorias;
 
 import Sistema.logic.CategoriaRecurso;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import Sistema.presentation.Highlighter;
 import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewCategorias implements PropertyChangeListener {
@@ -30,9 +35,10 @@ public class viewCategorias implements PropertyChangeListener {
             idCategoria.setEditable(false);
         }
 
-        buscarButton.addActionListener(e -> {
-            if (controller != null) {
-                controller.search(Descripciontxt.getText());
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.search(descripcion.getText());
             }
         });
 
@@ -91,7 +97,10 @@ public class viewCategorias implements PropertyChangeListener {
                 }
             }
         });
-
+        Highlighter highlighter = new Highlighter(Color.green);
+        Descripciontxt.addMouseListener(highlighter);
+        idCategoria.addMouseListener(highlighter);
+        descripcion.addMouseListener(highlighter);
     }
 
     public void setModel(Model model) {

@@ -2,25 +2,11 @@
 <data>
     <Funcionarios>
         <Funcionario>
-            <clave>789</clave>
+            <clave>111</clave>
             <id>111</id>
             <rol>FUNCIONARIO</rol>
             <nombre>Joao</nombre>
-            <telefono>12345</telefono>
-        </Funcionario>
-        <Funcionario>
-            <clave>222</clave>
-            <id>222</id>
-            <rol>FUNCIONARIO</rol>
-            <nombre>Juan</nombre>
-            <telefono>67890</telefono>
-        </Funcionario>
-        <Funcionario>
-            <clave>333</clave>
-            <id>333</id>
-            <rol>FUNCIONARIO</rol>
-            <nombre>Johanna</nombre>
-            <telefono>3456</telefono>
+            <telefono>123456</telefono>
         </Funcionario>
     </Funcionarios>
     <Administradores>
@@ -35,6 +21,14 @@
             <id>CAT-000001</id>
             <descripcion>Aula para 10</descripcion>
         </Categoria>
+        <Categoria>
+            <id>CAT-000002</id>
+            <descripcion>Laptop Windows</descripcion>
+        </Categoria>
+        <Categoria>
+            <id>CAT-000003</id>
+            <descripcion>Sala de juntas</descripcion>
+        </Categoria>
     </Categorias>
     <Recursos>
         <Recurso>
@@ -44,6 +38,14 @@
             </categoria>
             <descripcion>Aula para 10 en el primer piso</descripcion>
             <id>543</id>
+        </Recurso>
+        <Recurso>
+            <categoria>
+                <id>CAT-000002</id>
+                <descripcion>Laptop Windows</descripcion>
+            </categoria>
+            <descripcion>Laptop#67</descripcion>
+            <id>2345</id>
         </Recurso>
     </Recursos>
     <Reservas>
@@ -70,6 +72,30 @@
             <fecha>2026-09-10</fecha>
             <horaInicia>09:00</horaInicia>
             <horaTermina>11:00</horaTermina>
+        </Reserva>
+        <Reserva>
+            <id>2</id>
+            <actividad>Mesa redonda</actividad>
+            <funcionario>
+                <clave>111</clave>
+                <id>111</id>
+                <rol>FUNCIONARIO</rol>
+                <nombre>Joao</nombre>
+                <telefono>123456</telefono>
+            </funcionario>
+            <Recursos>
+                <Recurso>
+                    <categoria>
+                        <id>CAT-000002</id>
+                        <descripcion>Laptop Windows</descripcion>
+                    </categoria>
+                    <descripcion>Laptop#67</descripcion>
+                    <id>2345</id>
+                </Recurso>
+            </Recursos>
+            <fecha>2026-09-10</fecha>
+            <horaInicia>08:00</horaInicia>
+            <horaTermina>09:00</horaTermina>
         </Reserva>
     </Reservas>
 </data>
