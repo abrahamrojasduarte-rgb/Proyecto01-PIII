@@ -49,6 +49,7 @@ public class viewActividades implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(panelActividades, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+        matrizTable.setDefaultEditor(Object.class, null);
     }
 
 
@@ -94,12 +95,7 @@ public class viewActividades implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt){
         if (evt.getPropertyName().equals(Model.MATRIZ)){
-            DefaultTableModel tabla = new DefaultTableModel(armarColumnas(),0){
-                @Override
-                public boolean isCellEditable(int row, int column){
-                    return false;
-                }
-            };
+            DefaultTableModel tabla = new DefaultTableModel(armarColumnas(),0);
             for (String [] fila : armarFilas()){
                 tabla.addRow(fila);
             }

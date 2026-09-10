@@ -6,8 +6,6 @@ import Sistema.logic.CategoriaRecurso;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -50,7 +48,7 @@ public class viewCalendarizacion implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(panelCalendarizacion, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
-
+        matrizTable.setDefaultEditor(Object.class, null);
     }
 
     public void setModel(Model model){
@@ -105,12 +103,7 @@ public class viewCalendarizacion implements PropertyChangeListener {
                 categoriaCombo.setModel(cbModel);
                 break;
             case Model.MATRIZ:
-                DefaultTableModel tabla = new DefaultTableModel(armarColumnas(), 0){
-                    @Override
-                    public boolean isCellEditable(int row, int column){
-                        return false;
-                    }
-                };
+                DefaultTableModel tabla = new DefaultTableModel(armarColumnas(), 0);
                 for (String[] fila : armarFilas()){
                     tabla.addRow(fila);
                 }

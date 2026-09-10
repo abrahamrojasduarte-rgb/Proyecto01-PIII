@@ -74,6 +74,11 @@ public class Application {
                 new Sistema.presentation.actividades.Controller(actAModel,actAView);
                 tabbedPane.addTab("Actividades", actAView.getPanelActividades());
 
+                Sistema.presentation.estadisticas.Model estAModel = new Sistema.presentation.estadisticas.Model();
+                Sistema.presentation.estadisticas.viewEstadisticas estAView = new Sistema.presentation.estadisticas.viewEstadisticas();
+                new Sistema.presentation.estadisticas.Controller(estAModel, estAView);
+                tabbedPane.addTab("Estadisticas", estAView.getPanelEstadisticas());
+
                 tabbedPane.addChangeListener(e -> {
                     int selectedIndex = tabbedPane.getSelectedIndex();
                     if (selectedIndex != -1 && "Recursos".equals(tabbedPane.getTitleAt(selectedIndex))) {
@@ -96,6 +101,11 @@ public class Application {
                 Sistema.presentation.actividades.viewActividades actFView = new Sistema.presentation.actividades.viewActividades();
                 new Sistema.presentation.actividades.Controller(actFModel,actFView);
                 tabbedPane.addTab("Actividades", actFView.getPanelActividades());
+
+                Sistema.presentation.estadisticas.Model estFModel = new Sistema.presentation.estadisticas.Model();
+                Sistema.presentation.estadisticas.viewEstadisticas estFView = new Sistema.presentation.estadisticas.viewEstadisticas();
+                new Sistema.presentation.estadisticas.Controller(estFModel, estFView);
+                tabbedPane.addTab("Estadisticas", estFView.getPanelEstadisticas());
 
                 break;
         }
