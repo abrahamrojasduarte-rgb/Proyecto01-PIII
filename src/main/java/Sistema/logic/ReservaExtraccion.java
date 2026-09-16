@@ -11,8 +11,7 @@ public class ReservaExtraccion {
 
     public ReservaExtraccion() {}
 
-    public ReservaExtraccion(String actividad, String fecha, String horaInicio,
-                             String horaFinal, List<String> categoriasRecurso) {
+    public ReservaExtraccion(String actividad, String fecha, String horaInicio, String horaFinal, List<String> categoriasRecurso) {
         this.actividad = actividad;
         this.fecha = fecha;
         this.horaInicio = horaInicio;

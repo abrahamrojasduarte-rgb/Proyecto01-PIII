@@ -11,6 +11,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import Sistema.presentation.Highlighter;
+import Sistema.presentation.util.Iconos;
 import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewFuncionarios implements PropertyChangeListener{
@@ -33,6 +34,13 @@ public class viewFuncionarios implements PropertyChangeListener{
     Model model;
 
     public viewFuncionarios() {
+
+        buscarButton.setIcon(Iconos.cargarIcono("search.png",24,24));
+        imprimirButton.setIcon(Iconos.cargarIcono("pdf.png",24,24));
+        guardarButton.setIcon(Iconos.cargarIcono("save.png",24,24));
+        borrarButton.setIcon(Iconos.cargarIcono("cancel.png",24,24));
+        limpiarButton.setIcon(Iconos.cargarIcono("clear.png",24,24));
+
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

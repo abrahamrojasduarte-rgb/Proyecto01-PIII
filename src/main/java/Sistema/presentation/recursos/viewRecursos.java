@@ -3,6 +3,7 @@ package Sistema.presentation.recursos;
 import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Recurso;
 import Sistema.presentation.Highlighter;
+import Sistema.presentation.util.Iconos;
 import Sistema.presentation.util.PDFReportGenerator;
 
 import javax.swing.*;
@@ -31,6 +32,13 @@ public class viewRecursos implements PropertyChangeListener {
     private Model model;
 
     public viewRecursos() {
+
+        buscarBtn.setIcon(Iconos.cargarIcono("search.png",24,24));
+        pdfBtn.setIcon(Iconos.cargarIcono("pdf.png",24,24));
+        guardarBtn.setIcon(Iconos.cargarIcono("save.png",24,24));
+        borrarBtn.setIcon(Iconos.cargarIcono("cancel.png",24,24));
+        limpiarBtn.setIcon(Iconos.cargarIcono("clear.png",24,24));
+
         recursosTbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

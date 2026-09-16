@@ -1,5 +1,6 @@
 package Sistema.presentation.estadisticas;
 
+import Sistema.presentation.util.Iconos;
 import com.github.lgooddatepicker.components.DatePicker;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -41,6 +42,12 @@ public class viewEstadisticas implements PropertyChangeListener {
     private Controller controller;
 
     public viewEstadisticas(){
+
+        cargarRecursosButton.setIcon(Iconos.cargarIcono("check.png",24,24));
+        imprimirRecursosButton.setIcon(Iconos.cargarIcono("pdf.png", 24,24));
+        cargarActividadesButton.setIcon(Iconos.cargarIcono("check.png",24,24));
+        imprimirActividadesButton.setIcon(Iconos.cargarIcono("pdf.png", 24,24));
+
         graficoRecursos.setLayout(new BorderLayout());
         graficoActividades.setLayout(new BorderLayout());
 

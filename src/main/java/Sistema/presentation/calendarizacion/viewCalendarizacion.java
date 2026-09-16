@@ -1,5 +1,6 @@
 package Sistema.presentation.calendarizacion;
 
+import Sistema.presentation.util.Iconos;
 import com.github.lgooddatepicker.components.DatePicker;
 import Sistema.logic.Recurso;
 import Sistema.logic.CategoriaRecurso;
@@ -27,6 +28,10 @@ public class viewCalendarizacion implements PropertyChangeListener {
     private Controller controller;
 
     public viewCalendarizacion(){
+
+        cargarButton.setIcon(Iconos.cargarIcono("ok.png",24,24));
+        imprimirButton.setIcon(Iconos.cargarIcono("pdf.png", 24,24));
+
         cargarButton.addActionListener(e-> {
             try{
                 controller.cargar(datePicker.getDate(),(CategoriaRecurso) categoriaCombo.getSelectedItem());

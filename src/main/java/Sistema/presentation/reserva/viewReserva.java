@@ -4,6 +4,7 @@ import Sistema.logic.CategoriaRecurso;
 import Sistema.logic.Reserva;
 import Sistema.presentation.Highlighter;
 import com.github.lgooddatepicker.components.DatePicker;
+import Sistema.presentation.util.Iconos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +45,15 @@ public class viewReserva implements PropertyChangeListener {
     private JTable reservasTable;
 
     public viewReserva() {
+
+        extraerButton.setIcon(Iconos.cargarIcono("ai.png", 24, 24));
+        limpiarButton.setIcon(Iconos.cargarIcono("clear.png",24,24));
+        cancelarButton.setIcon(Iconos.cargarIcono("descartar.png",24,24));
+        reservarButton.setIcon(Iconos.cargarIcono("save.png",24,24));
+        imprimirButton.setIcon(Iconos.cargarIcono("pdf.png", 24,24));
+
+
+
         extraerButton.addActionListener(e -> {
             try {
                 controller.extraerConIA(fraseTxt.getText());

@@ -11,6 +11,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import Sistema.presentation.Highlighter;
+import Sistema.presentation.util.Iconos;
 import Sistema.presentation.util.PDFReportGenerator;
 
 public class viewCategorias implements PropertyChangeListener {
@@ -31,6 +32,13 @@ public class viewCategorias implements PropertyChangeListener {
     private JTable table1;
 
     public viewCategorias() {
+
+        buscarButton.setIcon(Iconos.cargarIcono("search.png",24,24));
+        imprimirButton.setIcon(Iconos.cargarIcono("pdf.png",24,24));
+        guardarButton.setIcon(Iconos.cargarIcono("save.png",24,24));
+        borrarButton.setIcon(Iconos.cargarIcono("cancel.png",24,24));
+        limpiarButton.setIcon(Iconos.cargarIcono("clear.png",24,24));
+
         if (idCategoria != null) {
             idCategoria.setEditable(false);
         }
