@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import Sistema.presentation.util.Iconos;
 
 public class viewLogin implements PropertyChangeListener{
     private JTextField idTXT;
@@ -25,6 +26,11 @@ public class viewLogin implements PropertyChangeListener{
     Controller controller;
 
     public viewLogin() {
+
+        iniciarSesionButton.setIcon(Iconos.cargarIcono("login.png",24,24));
+        cancelarButton.setIcon(Iconos.cargarIcono("cancel.png",24,24));
+        cambiarContrasenaButton.setIcon(Iconos.cargarIcono("clave.png",24,24));
+
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -2,6 +2,7 @@ package Sistema.presentation.cambiarContra;
 
 import Sistema.logic.Usuario;
 import Sistema.presentation.Highlighter;
+import Sistema.presentation.util.Iconos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,10 @@ public class viewCambiarContra {
     Sistema.presentation.cambiarContra.Controller controller;
 
     public viewCambiarContra() {
+
+        confirmarButton.setIcon(Iconos.cargarIcono("ok.png",24,24));
+        cancelarButton.setIcon(Iconos.cargarIcono("cancel.png",24,24));
+
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

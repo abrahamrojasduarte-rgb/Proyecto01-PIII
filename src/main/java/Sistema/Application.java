@@ -34,7 +34,6 @@ public class Application {
 
         Sistema.presentation.login.Controller controller =
                 new Sistema.presentation.login.Controller(model, view, loginWindow, Application::doRun);
-
         loginWindow.setVisible(true);
     }
 
