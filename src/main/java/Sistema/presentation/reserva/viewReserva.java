@@ -44,7 +44,6 @@ public class viewReserva implements PropertyChangeListener {
     private JTable reservasTable;
 
     public viewReserva() {
-
         extraerButton.addActionListener(e -> {
             try {
                 controller.extraerConIA(fraseTxt.getText());

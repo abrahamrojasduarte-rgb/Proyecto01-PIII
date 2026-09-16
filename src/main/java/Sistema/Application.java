@@ -17,7 +17,6 @@ public class Application {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
         doLogin();
     }
 
@@ -110,7 +109,7 @@ public class Application {
                 break;
         }
 
-        window.setSize(800, 600);
+        window.setSize(1400, 600);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }

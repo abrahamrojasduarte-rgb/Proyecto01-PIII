@@ -6,8 +6,7 @@ import Sistema.logic.Rol;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -107,6 +106,16 @@ public class viewFuncionarios implements PropertyChangeListener{
         idBuscar.addMouseListener(highlighter);
         nombreBuscar.addMouseListener(highlighter);
 
+        funcionarioTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = funcionarioTable.getSelectedRow();
+                    if (row != -1 && model != null && model.getFuncionarios() != null) {
+                        Funcionario seleccionado = model.getFuncionarios().get(row);
+                        model.setCurrent(seleccionado);
+                }
+            }
+        });
     }
 
     public JPanel getFuncionarioAdmin() {
